@@ -6,8 +6,10 @@ defmodule Todos.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
     # List all child processes to be supervised
     children = [
+      supervisor(Todos.Repo, [])
       # Starts a worker by calling: Todos.Worker.start_link(arg)
       # {Todos.Worker, arg},
     ]
