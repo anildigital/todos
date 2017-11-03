@@ -10,11 +10,9 @@ defmodule Todos.User do
     timestamps()
   end
 
-  @required_fields ~w(name email)
-  @optional_fields ~w()
-
   def changeset(record, params \\ :empty) do
     record
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, ~w(name email))
+    |> validate_required([:name, :email])
   end
 end

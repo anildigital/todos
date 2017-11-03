@@ -1,4 +1,4 @@
-defmodule Todos.TodoItems do
+[defmodule Todos.TodoItems do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,14 +7,13 @@ defmodule Todos.TodoItems do
     field(:completed, :boolean, default: false)
 
     belongs_to(:todolist, Todos.Todolist)
+    many_to_many(:tags, Todos.Tag, join_through: "todo_items_tags", on_replace: :delete)
     timestamps()
   end
 
-  @required_fields ~w(text)
-  @optional_fields ~w()
-
   def changeset(record, params \\ :empty) do
     record
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, ~w(text completed))
+    |> validate_required([:text])
   end
 end

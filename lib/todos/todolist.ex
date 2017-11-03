@@ -9,11 +9,9 @@ defmodule Todos.Todolist do
     timestamps()
   end
 
-  @required_fields ~w(title)
-  @optional_fields ~w()
-
   def changeset(record, params \\ :empty) do
     record
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, ~w(title))
+    |> validate_required([:title])
   end
 end
