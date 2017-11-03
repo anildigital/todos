@@ -4,7 +4,8 @@ defmodule Todos.Todolist do
 
   schema "todolists" do
     field(:title, :string)
-
+    has_many(:todo_items, Todos.TodoItems)
+    belongs_to(:user, Todos.User)
     timestamps()
   end
 

@@ -6,6 +6,7 @@ defmodule Todos.TodoItems do
     field(:text, :string)
     field(:completed, :boolean, default: false)
 
+    belongs_to(:todolist, Todos.Todolist)
     timestamps()
   end
 

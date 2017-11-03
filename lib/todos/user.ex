@@ -6,6 +6,7 @@ defmodule Todos.User do
     field(:name, :string)
     field(:email, :string)
 
+    has_many(:todolists, Todos.Todolist)
     timestamps()
   end
 

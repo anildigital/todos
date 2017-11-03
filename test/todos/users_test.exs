@@ -30,4 +30,17 @@ defmodule Todos.UsersTest do
     todolist = Repo.get(Todos.Todolist, todolist.id)
     assert nil == todolist
   end
+
+  test "As a user I should be able to update my list name" do
+    # Give
+    todolist_title = "My daily todolist"
+    {:ok, todolist} = Users.create_list(todolist_title)
+
+    ## When
+    Users.update_title(todolist.id, "My new todolist")
+
+    ## Then
+    todolist = Repo.get(Todos.Todolist, todolist.id)
+    assert "My new todolist" == todolist.title
+  end
 end

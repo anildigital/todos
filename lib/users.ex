@@ -9,4 +9,9 @@ defmodule Users do
     todolist = Repo.get(Todos.Todolist, list_id)
     Repo.delete(todolist)
   end
+
+  def update_title(list_id, new_title) do
+    todolist = Repo.get(Todos.Todolist, list_id)
+    Repo.update(Todos.Todolist.changeset(todolist, %{title: new_title}))
+  end
 end
